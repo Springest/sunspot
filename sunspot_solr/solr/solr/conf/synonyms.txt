@@ -12,20 +12,173 @@
 
 #-----------------------------------------------------------------------
 #some test synonym mappings unlikely to appear in real input text
-aaa => aaaa
-bbb => bbbb1 bbbb2
-ccc => cccc1,cccc2
-a\=>a => b\=>b
-a\,a => b\,b
-fooaaa,baraaa,bazaaa
+# aaa => aaaa
+# bbb => bbbb1 bbbb2
+# ccc => cccc1,cccc2
+# a\=>a => b\=>b
+# a\,a => b\,b
 
 # Some synonym groups specific to this example
-GB,gib,gigabyte,gigabytes
-MB,mib,megabyte,megabytes
-Television, Televisions, TV, TVs
+# GB,gib,gigabyte,gigabytes
+# MB,mib,megabyte,megabytes
+# Television, Televisions, TV, TVs
 #notice we use "gib" instead of "GiB" so any WordDelimiterFilter coming
 #after us won't split it into two words.
 
 # Synonym mappings can be used for spelling correction too
-pixima => pixma
+# pixima => pixma
 
+acces, acess, access
+account management, accountmanagement
+ADM, Architecture Development Method
+administratie, administratief
+Administratie Consulent, Administratieconsulent
+advies, adviseren, adviseur, adviseur, adviseurs, adviesvaardigheden
+agressietraining, agressiecursus, agressie
+AOV, algemene ondernemersvaardigheden
+Application Services Library, ASL
+APS, Advanced Planning Systeem
+assertief, assertiever, assertiviteitscursus, assertiviteitstraining, assertiviteit
+balie, receptie
+baliemedewerker, receptioniste
+BCI , Business Continuity Institute
+BCM, Business Continuity Management
+bedrijfshulpverlening, bhv
+Bedrijfskunde ICT, Bedrijfskundige Informatica
+bedrijfskundige, bedrijfskundig, bedrijfskunde
+beinvloeden, beinvloeding, invloed
+BI, Business Intelligence
+boekhouding, boekhouden
+BPM, Business Process Management
+brein, brain
+breintraining, braintraining
+budget coach, budgetcoaching, budgetcoach
+CBIP, Certified Business Intelligence Professional
+CCC, Customer Contact Centers
+CE, Collaborative Engineering
+CISSP, Certified Information Systems Security Professional
+coach, coaching
+coachen, coaching
+Communicatievaardigheden, Communicatieve vaardigheden
+communiceren, communicatie
+computervaardigheden, vaardigheid met de computer
+controlling, controller
+corespondentie, corresponderen, schrijven
+CPM, Corporate Performance Management
+creatief, creatieve, creativiteit
+CRM, Customer Relationship Management
+CSCP, Certified Supply Chain Professional
+cursus, cursussen
+dtp, desktoppublishing, desktop publishing
+EA, Enterprise Architectuur
+EAI, Enterprise Application Integration
+ECM, Enterprise Content Management
+ecoaching, e-coaching
+ecommerce, e-commerce
+EDMS, Electronic Document Management Systeem
+elearning, e-learning
+english, engels
+ERP, Enterprise Resource Planning
+evenement, event, Evenementenorganisatie, eventmanagement
+excell, exel, excel
+externe veiligheid, externe veiligheidsvraagstukken
+Facilitair, facility, Facilitaire
+finance, financial, financiele, financieel
+HRD, human resource development
+HRM, Human Resource Management
+human resources, hr
+hvk, hogere veiligheidskunde
+IAM, Identity Access Management
+inkopen, inkoop
+internet, online
+interview, interviewtechnieken, interviewen
+IPM, Integraal Performance Management
+IT, ICT
+lasser, lassen
+leiding geven, leidinggeven
+Logistiek management, Logistiek Manager
+logistieke, logistiek
+loopbaanadvies, loopbaanadviseur
+Loopbaanadvies, Loopbaanadviseur, Loopbaanadvisering
+Management accounting, Managementaccounting
+Management assistent, Managementassistent
+manager, management
+marketing, marketeer
+Marketingoriëntatie, Marketing oriëntatie
+mens, mensen
+middenkader, middlemanagement
+middenmanagement, middlemanagement
+middle, midden
+mondeling communiceren, mondelinge communicatie
+mondelinge, mondeling
+ms, microsoft
+mvk, middelbare veiligheidskunde
+Netwerkmanagement, Netwerkbeheerder
+nima a, nima marketing a
+nima b, nima marketing b
+nima c, nima marketing c
+NIMA Marketing-B, NIMA Consumentenmarketing-B, NIMA Generieke Marketing-B
+nlp, Neurolinguïstisch programmeren
+notulen, notuleren
+OECD, Transfer Pricing
+Office manager, officemanager, office management, officemanager
+omgaan met de media, mediatraining
+onderhandeling, onderhandel, onderhandelen
+Ondernemen, Ondernemersvaardigheden
+online marketing, Internetmarketing
+opleiding, opleiden, opleidingen
+or, ondernemingsraad
+pe, permanente educatie
+pedagogisch, pedagogiek
+photoshop, adobe photoshop
+PLM, Product Lifecycle Management
+presentatie, presentatietechnieken, presenteren
+prince 2, prince2
+process, proces
+product management, productmanagement
+project management, projectmanagement
+psycholoog, psychologie
+receptionist, receptioniste
+Recht, rechten
+restauratie, restaureren
+SABSA, Sherwood Applied Business Security Architecture
+Salarisadministratie, Salarisadministrateur
+schoonheidsspecialist, schoonheidsspecialiste, schoonheidsverzorging
+schrijf, schrijftelijk, schrijftelijke, schrijven
+schrijven voor het web, web schrijven, webredactie
+schulphulpverlener, schulphulpverlening, schuldhulpverlenen
+SCM, Supply Chain Management
+snel lezen, snellezen
+Sociaal werker, Maatschappelijk Werk(er)
+Sociaal werker, Sociaal-maatschappelijk Dienstverlener
+social media, sociale media, sociale netwerken, web 2.0
+sollicitatie, sollicitatiecursus, sollicitatietraining, solliciteren
+SRM, Supplier Relationship Management
+SSC, Shared Service Centers
+SchoolvoorCoaching, school voor coaching
+TDWI, The Data Warehousing Institute
+technisch, technische, technology, techniek
+tekstschrijven, schrijven
+time management, timemanagement
+TP, Transfer Pricing
+train de trainer, train the trainer, trainer
+training, trainingen
+vastgoed management, Real Estate Management
+verandermanager, verander management, verandermanagement
+verpleegkunde, verpleegkundige
+vorkheftruck, heftruck
+web design, webontwerp, webdesign
+web schrijven, webredactie
+web2.0, web 2.0
+Weblog, blog, blogger, bloggen
+webredacteur, web redacteur, web redactie, webredactie
+webshop, webwinkel
+webwinkels, webwinkel
+wft, wet financieel toezicht
+wix, windows installer xml
+WMS, Warehouse Management Systeem
+Zoekmachine adverteren, SEA  Adwords
+Zoekmachine marketing, zoekmachinemarketing
+Zoekmachine optimalisatie, SEO
+Zorg voor adolescenten, Volwassenenwerk
+Zorgmanagement , Zorg management
