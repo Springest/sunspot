@@ -7,8 +7,19 @@ module Sunspot #:nodoc:
     # contains properties keyed by environment name. A sample sunspot.yml file
     # would look like:
     #
+    #   cores:
+    #     en:
+    #       path: /solr/core-en
+    #     nl:
+    #       path: /solr/core-nl
+    #     nl-be:
+    #       path: /solr/core-nl-be
+    #     de:
+    #       path: /solr/core-de
+    #
     #   development:
     #     solr:
+    #       <<: *cores
     #       hostname: localhost
     #       port: 8982
     #       min_memory: 512M
@@ -18,6 +29,7 @@ module Sunspot #:nodoc:
     #     disabled: false
     #   test:
     #     solr:
+    #       <<: *cores
     #       hostname: localhost
     #       port: 8983
     #       log_level: OFF
@@ -25,6 +37,7 @@ module Sunspot #:nodoc:
     #       read_timeout: 2
     #   production:
     #     solr:
+    #       <<: *cores
     #       hostname: localhost
     #       port: 8983
     #       path: /solr/myindex
@@ -83,6 +96,63 @@ module Sunspot #:nodoc:
       end
 
       #
+      # The name of the current core.
+      # Defaults to nil if no cores are configured.
+      #
+      # ==== Returns
+      #
+      # String:: core
+      #
+      def core
+        core = path.split("/").last
+        core unless core == "solr"
+      end
+
+      #
+      # The current configuration.
+      #
+      # ==== Returns
+      #
+      # Sunspot::Rails::Configuration:: solr
+      #
+      def solr
+        self
+      end
+
+      #
+      # The current configuration.
+      #
+      # ==== Returns
+      #
+      # Sunspot::Rails::Configuration:: pagination
+      #
+      def pagination
+        self
+      end
+
+      #
+      # The default pagination configuration.
+      #
+      # ==== Returns
+      #
+      # Integer:: default_per_page
+      #
+      def default_per_page
+        @pagination ||= user_configuration_from_key('solr', 'pagination') || 15
+      end
+
+      #
+      # The url to the current solr core.
+      #
+      # ==== Returns
+      #
+      # String:: url
+      #
+      def url
+        "http://#{hostname}:#{port}#{path}"
+      end
+
+      #
       # The url path to the Solr servlet (useful if you are running multicore).
       # Default '/solr'.
       #
@@ -91,6 +161,11 @@ module Sunspot #:nodoc:
       # String:: path
       #
       def path
+        @paths ||= {}
+        @paths[I18n.locale] ||= user_configuration_from_key('solr', I18n.locale.to_s, 'path') || path_without_locale
+      end
+
+      def path_without_locale
         unless defined?(@path)
           @path   = solr_url.path if solr_url
           @path ||= user_configuration_from_key('solr', 'path')
@@ -132,6 +207,11 @@ module Sunspot #:nodoc:
       # String:: path
       #
       def master_path
+        @master_paths ||= {}
+        @master_paths[I18n.locale] ||= user_configuration_from_key('master_solr', I18n.locale.to_s, 'path') || master_path_without_locale
+      end
+
+      def master_path_without_locale
         @master_path ||= (user_configuration_from_key('master_solr', 'path') || path)
       end
 
