@@ -33,6 +33,23 @@ module Sunspot
         end
       end
 
+      def stop
+        if File.exist?(pid_path)
+          pid = IO.read(pid_path).to_i
+          begin
+            Process.kill('TERM', pid)
+          rescue Errno::ESRCH
+            raise NotRunningError, "Process with PID #{pid} is no longer running"
+          ensure
+            FileUtils.rm(pid_path)
+            remove_stale_processes(pid)
+          end
+        else
+          remove_stale_processes
+          raise NotRunningError, "No PID file at #{pid_path}"
+        end
+      end
+
       def bootstrap
         super unless ::Rails.env.production?
       end
