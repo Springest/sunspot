@@ -63,7 +63,7 @@ module Sunspot #:nodoc:
         end
         @hostname
       end
-      
+
       #
       # The port at which to connect to Solr.
       # Defaults to 8981 in test, 8982 in development and 8983 in production.
@@ -146,7 +146,7 @@ module Sunspot #:nodoc:
         @has_master = !!user_configuration_from_key('master_solr')
       end
 
-      # 
+      #
       # The default log_level that should be passed to solr. You can
       # change the individual log_levels in the solr admin interface.
       # Default 'INFO'.
@@ -158,39 +158,39 @@ module Sunspot #:nodoc:
       def log_level
         @log_level ||= (user_configuration_from_key('solr', 'log_level') || 'INFO')
       end
-      
+
       #
       # Should the solr index receive a commit after each http-request.
       # Default true
       #
       # ==== Returns
-      # 
+      #
       # Boolean: auto_commit_after_request?
       #
       def auto_commit_after_request?
-        @auto_commit_after_request ||= 
+        @auto_commit_after_request ||=
           user_configuration_from_key('auto_commit_after_request') != false
       end
-      
+
       #
       # As for #auto_commit_after_request? but only for deletes
       # Default false
       #
       # ==== Returns
-      # 
+      #
       # Boolean: auto_commit_after_delete_request?
       #
       def auto_commit_after_delete_request?
-        @auto_commit_after_delete_request ||= 
+        @auto_commit_after_delete_request ||=
           (user_configuration_from_key('auto_commit_after_delete_request') || false)
       end
-      
-      
+
+
       #
       # The log directory for solr logfiles
       #
       # ==== Returns
-      # 
+      #
       # String:: log_dir
       #
       def log_file
@@ -200,15 +200,15 @@ module Sunspot #:nodoc:
       def data_path
         @data_path ||= user_configuration_from_key('solr', 'data_path') || File.join(::Rails.root, 'solr', 'data', ::Rails.env)
       end
-      
+
       def pid_dir
         @pid_dir ||= user_configuration_from_key('solr', 'pid_dir') || File.join(::Rails.root, 'solr', 'pids', ::Rails.env)
       end
 
-      
-      # 
+
+      #
       # The solr home directory. Sunspot::Rails expects this directory
-      # to contain a config, data and pids directory. See 
+      # to contain a config, data and pids directory. See
       # Sunspot::Rails::Server.bootstrap for more information.
       #
       # ==== Returns
@@ -224,21 +224,21 @@ module Sunspot #:nodoc:
           end
       end
 
-      # 
+      #
       # Solr start jar
       #
       def solr_jar
         @solr_jar ||= user_configuration_from_key('solr', 'solr_jar')
       end
 
-      # 
+      #
       # Minimum java heap size for Solr instance
       #
       def min_memory
         @min_memory ||= user_configuration_from_key('solr', 'min_memory')
       end
 
-      # 
+      #
       # Maximum java heap size for Solr instance
       #
       def max_memory
@@ -251,7 +251,7 @@ module Sunspot #:nodoc:
       def bind_address
         @bind_address ||= user_configuration_from_key('solr', 'bind_address')
       end
-      
+
       def read_timeout
         @read_timeout ||= user_configuration_from_key('solr', 'read_timeout')
       end
@@ -269,9 +269,9 @@ module Sunspot #:nodoc:
       end
 
       private
-      
+
       #
-      # Logging in rails_root/log as solr_<environment>.log as a 
+      # Logging in rails_root/log as solr_<environment>.log as a
       # default.
       #
       # ===== Returns
@@ -281,8 +281,8 @@ module Sunspot #:nodoc:
       def default_log_file_location
         File.join(::Rails.root, 'log', "solr_" + ::Rails.env + ".log")
       end
-      
-      # 
+
+      #
       # return a specific key from the user configuration in config/sunspot.yml
       #
       # ==== Returns
@@ -294,7 +294,7 @@ module Sunspot #:nodoc:
           hash[key] if hash
         end
       end
-      
+
       #
       # Memoized hash of configuration options for the current Rails environment
       # as specified in config/sunspot.yml
@@ -317,36 +317,36 @@ module Sunspot #:nodoc:
             end
           end
       end
-    
+
     protected
-    
+
       #
       # When a specific hostname, port and path aren't provided in the
       # sunspot.yml file, look for a key named 'url', then check the
       # environment, then fall back to a sensible localhost default.
       #
-      
+
       def solr_url
         if ENV['SOLR_URL'] || ENV['WEBSOLR_URL']
           URI.parse(ENV['SOLR_URL'] || ENV['WEBSOLR_URL'])
         end
       end
-      
+
       def default_hostname
         'localhost'
       end
-      
+
       def default_port
         { 'test'        => 8981,
           'development' => 8982,
           'production'  => 8983
         }[::Rails.env]  || 8983
       end
-      
+
       def default_path
         '/solr'
       end
-      
+
     end
   end
 end

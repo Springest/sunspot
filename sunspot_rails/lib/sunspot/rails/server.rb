@@ -44,14 +44,14 @@ module Sunspot
         configuration.solr_jar || super
       end
 
-      # 
+      #
       # Address on which to run Solr
       #
       def bind_address
         configuration.bind_address
       end
 
-      # 
+      #
       # Port on which to run Solr
       #
       def port
@@ -66,21 +66,21 @@ module Sunspot
         LOG_LEVELS[::Rails.logger.level]
       end
 
-      # 
+      #
       # Log file for Solr. File is in the rails log/ directory.
       #
       def log_file
         File.join(::Rails.root, 'log', "sunspot-solr-#{::Rails.env}.log")
       end
 
-      # 
+      #
       # Minimum Java heap size for Solr
       #
       def min_memory
         configuration.min_memory
       end
 
-      # 
+      #
       # Maximum Java heap size for Solr
       #
       def max_memory
