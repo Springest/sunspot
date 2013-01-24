@@ -106,7 +106,7 @@ module Sunspot
         if options[:as]
           options.delete(:as).to_s
         else
-          "#{@type.indexed_name(@name).to_s}#{'m' if @multiple }#{'s' if @stored}#{'v' if more_like_this?}"
+          "#{@type.indexed_name(@name).to_s}#{'m' if @multiple }#{'s' if @stored}#{'v' if more_like_this?}#{'o' if @omit_norms}"
         end
     end
 
@@ -122,11 +122,13 @@ module Sunspot
   #
   class FulltextField < Field #:nodoc:
     attr_reader :default_boost
+    attr_reader :omit_norms
 
     def initialize(name, options = {})
       super(name, Type::TextType.instance, options)
       @multiple = true
       @boost = options.delete(:boost)
+      @omit_norms = !!options.delete(:omit_norms)
       @default_boost = options.delete(:default_boost)
       raise ArgumentError, "Unknown field option #{options.keys.first.inspect} provided for field #{name.inspect}" unless options.empty?
     end

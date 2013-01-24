@@ -159,7 +159,11 @@
     <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name="*_text" stored="false" type="text" multiValued="true" indexed="true"/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
+    <dynamicField name="*_texto" stored="false" type="text" multiValued="true" indexed="true" omitNorms="true"/>
+    <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name="*_texts" stored="true" type="text" multiValued="true" indexed="true"/>
+    <!-- *** This dynamicField is used by Sunspot! *** -->
+    <dynamicField name="*_textso" stored="true" type="text" multiValued="true" indexed="true" omitNorms="true"/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name="*_b" stored="false" type="boolean" multiValued="false" indexed="true"/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
@@ -243,7 +247,11 @@
     <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name="*_textv" stored="false" termVectors="true" type="text" multiValued="true" indexed="true"/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
+    <dynamicField name="*_textvo" stored="false" termVectors="true" type="text" multiValued="true" indexed="true" omitNorms="true"/>
+    <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name="*_textsv" stored="true" termVectors="true" type="text" multiValued="true" indexed="true"/>
+    <!-- *** This dynamicField is used by Sunspot! *** -->
+    <dynamicField name="*_textsvo" stored="true" termVectors="true" type="text" multiValued="true" indexed="true" omitNorms="true"/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name="*_et" stored="false" termVectors="true" type="tdouble" multiValued="false" indexed="true"/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
