@@ -75,6 +75,10 @@ module Sunspot
         false
       end
 
+      def accepts_omit_norms?
+        false
+      end
+
       def to_literal(object)
         raise(
           ArgumentError,
