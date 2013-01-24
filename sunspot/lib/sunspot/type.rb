@@ -110,6 +110,10 @@ module Sunspot
       def accepts_more_like_this?
         true
       end
+
+      def accepts_omit_norms?
+        true
+      end
     end
 
     # 

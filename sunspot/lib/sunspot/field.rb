@@ -5,6 +5,7 @@ module Sunspot
     attr_accessor :reference # Model class that the value of this field refers to
     attr_reader :boost
     attr_reader :indexed_name # Name with which this field is indexed internally. Based on public name and type or the +:as+ option.
+    attr_reader :omit_norms
 
     #
     #
@@ -12,8 +13,10 @@ module Sunspot
       @name, @type = name.to_sym, type
       @stored = !!options.delete(:stored)
       @more_like_this = !!options.delete(:more_like_this)
+      @omit_norms = !!options.delete(:omit_norms)
       set_indexed_name(options)
       raise ArgumentError, "Field of type #{type} cannot be used for more_like_this" unless type.accepts_more_like_this? or !@more_like_this
+      raise ArgumentError, "Field of type #{type} cannot be used for omit_norms" unless type.accepts_omit_norms? or !@omit_norms
     end
 
     # Convert a value to its representation for Solr indexing. This delegates
@@ -122,13 +125,11 @@ module Sunspot
   #
   class FulltextField < Field #:nodoc:
     attr_reader :default_boost
-    attr_reader :omit_norms
 
     def initialize(name, options = {})
       super(name, Type::TextType.instance, options)
       @multiple = true
       @boost = options.delete(:boost)
-      @omit_norms = !!options.delete(:omit_norms)
       @default_boost = options.delete(:default_boost)
       raise ArgumentError, "Unknown field option #{options.keys.first.inspect} provided for field #{name.inspect}" unless options.empty?
     end
